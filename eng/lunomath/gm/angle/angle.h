@@ -2,8 +2,17 @@
 #define __ANGLE_H__
 
 #include "../../common.h"
-#include "./angle_common.h"
-#include "../../mgmt/fixed/fixed_common.h"
+#include "../../mgmt/fixed/fixed.h"
+
+// Not accurate, but is useful...
+#define FIXED_PI  0x3243f
+
+// Angle constants
+#define BAM_MAX   0x1000
+#define ANGLE_STEP  \
+  (360.0 / (BAM_MAX + 1))
+
+typedef unsigned angle_t;
 
 LUNOMATH_API
 fixed_t angle_to_deg(angle_t ang);
