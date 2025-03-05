@@ -3,12 +3,12 @@ workspace "test"
    configurations { "Debug", "Release" }
 
 project "test"
-   kind "WindowedApp"
+   kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
-   includedirs "./dep/include/"
-   libdirs "./dep/lib/"
-   links { "SDL2main", "SDL2" }
+   includedirs { "./dep/include/", "./eng/" }
+   libdirs { "./dep/lib/", "./bin/Debug/" }
+   links { "SDL2main", "SDL2", "lunomath" }
    files { "./test/**.h", "./test/**.hpp", "./test/**.cpp" }
 
    filter "configurations:Debug"

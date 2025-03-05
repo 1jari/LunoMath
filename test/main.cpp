@@ -1,14 +1,26 @@
 #include "./Runtime/App/App.hpp"
+extern "C" {	
+  #include <lunomath/lunomath.h>
+  #include <lunomath/lunomath.h>
+}
+
+q_stack_t stack;
 
 using namespace Runtime;
 
 class Simulator : public App {
 public:
-  Simulator() : App() {} // Make the constructor public
+  Simulator() : App() {
+    stack = create_stack();
+    stack_push(2112, &stack);
+  }
 
   void step() override {}
   void draw() override {}
 
+  ~Simulator() {
+    clean_stack(&stack);
+  }
 };
 
 int SDL_main(int argc, char* argv[]) {
