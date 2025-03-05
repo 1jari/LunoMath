@@ -20,11 +20,6 @@
 #define I64_MIN -9223372036854775808
 #define I64_MAX 9223372036854775807
 
-// For convenience
-#define UINT_MAX U32_MAX
-#define INT_MIN  I32_MIN
-#define INT_MAX  I32_MAX
-
 typedef unsigned char        u8_t;
 typedef unsigned short       u16_t;
 typedef unsigned long        u32_t;

@@ -6,7 +6,7 @@ project "test"
    kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
-   includedirs { "./dep/include/", "./eng/" }
+   includedirs { "./dep/include/", "./src/" }
    libdirs { "./dep/lib/", "./bin/Debug/" }
    links { "SDL2main", "SDL2", "lunomath" }
    files { "./test/**.h", "./test/**.hpp", "./test/**.cpp" }

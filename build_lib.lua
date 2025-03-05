@@ -7,7 +7,7 @@ project "lunomath"
    language "C"
    targetdir "bin/%{cfg.buildcfg}"
 
-   files { "./eng/**.h", "./eng/**.c" }
+   files { "./src/**.h", "./src/**.c" }
 
    filter "configurations:Debug"
       defines { "DEBUG" }

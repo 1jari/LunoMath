@@ -12,13 +12,12 @@ public:
     stack_push(2112, &stack);
     
     // Corrected: angle_from_deg(45.0f) for converting degrees to internal representation
-    int angle = angle_from_deg(F_TO_FX(211.2f));
-    
-    // Accessing the cosine value at the correct angle (assuming cos_table is already defined)
-    fixed_t cos_val = cos_table[angle];
-    
-    // Print the angle, its internal representation, and the cosine value in hex format
-    printf("vv %f - cos %x %f\n", 211.2f, angle_to_deg(angle), FX_TO_F(cos_val));
+    angle_t angle = angle_from_deg(F_TO_FX(45.0f));
+
+    vec2f_t v = vec2f(F_TO_FX(21), F_TO_FX(12));
+    vec2f_t nv = apply_angle_vec2f(angle, v);
+
+    printf("x %f y %f\n", FX_TO_F(nv.x), FX_TO_F(nv.y));
   }
 
   void step() override {}

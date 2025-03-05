@@ -13,6 +13,6 @@
 **.gdb
 **.idb
 **.ilk
-dep/**.*
-bin/**.*
-obj/**.*
+dep/
+bin/
+obj/
