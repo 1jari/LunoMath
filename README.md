@@ -13,11 +13,12 @@ Building
 
 To compile, just run:
 ```sh
-# For Visual C++:
-$ premake5 vs2022
+# On Visual C++:
+$ ./build_win.bat
 
 # For GCC:
 $ premake5 gmake
+$ make
 ```
 License
 -------
