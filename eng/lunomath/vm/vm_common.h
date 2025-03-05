@@ -2,7 +2,6 @@
 #define __VM_COMMON_H__
 
 #include "../common.h"
-#include "./bytecode/bytecode.h"
 #include "./stack/stack.h"
 
 typedef struct {
