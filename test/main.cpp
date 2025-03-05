@@ -17,7 +17,7 @@ public:
     vec2f_t v = vec2f(F_TO_FX(21), F_TO_FX(12));
     vec2f_t nv = apply_angle_vec2f(angle, v);
 
-    printf("x %f y %f\n", FX_TO_F(nv.x), FX_TO_F(nv.y));
+    printf("random %d\n", q_rand((int*)2112));
   }
 
   void step() override {}
