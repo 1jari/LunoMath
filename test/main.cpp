@@ -1,8 +1,5 @@
 #include "./Runtime/App/App.hpp"
-extern "C" {	
-  #include <lunomath/lunomath.h>
-  #include <lunomath/lunomath.h>
-}
+#include <lunomath/lunomath.h>
 
 q_stack_t stack;
 
