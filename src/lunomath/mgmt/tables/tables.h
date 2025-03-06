@@ -10,6 +10,8 @@ extern
 u8_t q_rnd_idx;
 
 LUNOMATH_API
-u8_t q_rand(int *seed);
+u16_t q_rand(int *seed);
+LUNOMATH_API
+u8_t q_rand_u8(int *seed);
 
 #endif //__RND_H__

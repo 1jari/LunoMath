@@ -27,8 +27,15 @@ u8_t q_rnd_table[256] = {
 };
 
 LUNOMATH_API
-u8_t q_rand(int *seed) {
+u8_t q_rand_u8(int *seed) {
   q_rnd_idx = (q_rnd_idx >= 255) ? 0 : q_rnd_idx;
   q_rnd_idx = (++q_rnd_idx);
-  return (u8_t)q_rnd_table[q_rnd_idx] + (int)&seed;
+  return (u8_t)(q_rnd_table[q_rnd_idx] + (int)&seed);
+}
+
+LUNOMATH_API
+u16_t q_rand(int *seed) {
+  q_rnd_idx = (q_rnd_idx >= 255) ? 0 : q_rnd_idx;
+  q_rnd_idx = (++q_rnd_idx);
+  return (u16_t)(q_rnd_table[q_rnd_idx] + (int)&seed);
 }
