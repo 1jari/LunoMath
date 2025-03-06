@@ -1,15 +1,15 @@
 -- build_lib.lua
-workspace "test"
+workspace "versis_gui"
    configurations { "Debug", "Release" }
 
-project "test"
+project "versis_gui"
    kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    includedirs { "./dep/include/", "./src/" }
    libdirs { "./dep/lib/", "./bin/Debug/" }
    links { "SDL2main", "SDL2", "lunomath" }
-   files { "./test/**.h", "./test/**.hpp", "./test/**.cpp" }
+   files { "./sim/**.h", "./sim/**.hpp", "./sim/**.cpp" }
 
    filter "configurations:Debug"
       defines { "DEBUG" }

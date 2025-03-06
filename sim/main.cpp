@@ -1,5 +1,5 @@
-#include "./Runtime/App/App.hpp"
 #include <lunomath/lunomath.h>
+#include "./Runtime/App/App.hpp"
 
 q_stack_t stack;
 
@@ -8,9 +8,10 @@ using namespace Runtime;
 class Simulator : public App {
 public:
   Simulator() : App() {
-    stack = create_stack();
-    stack_push(2112, &stack);
+    stack = create_q_stack();
     
+    machine = create_mach();
+
     // Corrected: angle_from_deg(45.0f) for converting degrees to internal representation
     angle_t angle = angle_from_deg(F_TO_FX(45.0f));
 
@@ -25,8 +26,11 @@ public:
   void draw() override {}
 
   ~Simulator() {
-    clean_stack(&stack);
+    clean_q_stack(&stack);
+    shutdown_mach(&machine);
   }
+  private: 
+    mach_t machine;
 };
 
 int SDL_main(int argc, char* argv[]) {

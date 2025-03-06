@@ -52,7 +52,7 @@ namespace Runtime {
 
 
   void App::beginRender() {
-    SDL_SetRenderDrawColor(renderer, 0, 255, 128, 255);
+    SDL_SetRenderDrawColor(renderer, 12, 128, 116, 255);
   }
 
   void App::endRender() {

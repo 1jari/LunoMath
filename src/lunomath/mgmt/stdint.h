@@ -1,9 +1,6 @@
 #ifndef __STDINT_H__
 #define __STDINT_H__
 
-#define true    1
-#define false   0
-
 #define U8_MAX  0xff
 #define I8_MAX  -128
 #define I8_MIN  127

@@ -3,22 +3,24 @@
 
 #include "../bytecode/bytecode.h"
 
+typedef u32_t value_t;
+
 typedef struct {
-  u32_t    *data;
-  u16_t     size;
+  value_t *data;
+  u16_t    size;
 } q_stack_t;
 
 LUNOMATH_API
-q_stack_t  create_stack();
+q_stack_t  create_q_stack();
 LUNOMATH_API
-u32_t    stack_pop(    q_stack_t *s);
+value_t     q_stack_pop(  q_stack_t *s);
 LUNOMATH_API
-u16_t    stack_push(   u32_t    x,
-                       q_stack_t *s);
+u16_t       q_stack_push( value_t    x,
+                          q_stack_t *s);
 LUNOMATH_API
-u32_t    stack_base(   q_stack_t *s);
+value_t     q_stack_base( q_stack_t *s);
 LUNOMATH_API
-u32_t    stack_top(    q_stack_t *s);
+value_t     q_stack_top(  q_stack_t *s);
 LUNOMATH_API
-void  clean_stack(  q_stack_t *s);
+void        clean_q_stack(q_stack_t *s);
 #endif //__STACK_H__
