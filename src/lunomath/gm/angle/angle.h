@@ -5,8 +5,8 @@
 #include "../../mgmt/fixed/fixed.h"
 
 // Not accurate, but is useful...
-#define FIXED_PI  			(0x3243f)
-#define FIXED_PI_DIV_TWO  	(0x3243f / 2)
+#define FIXED_PI  			  (0x3243f)
+#define FIXED_PI_DIV_TWO  (0x3243f / 2)
 
 // Angle constants
 #define BAM_MAX   0x1000

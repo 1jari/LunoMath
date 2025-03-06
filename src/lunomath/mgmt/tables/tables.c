@@ -28,7 +28,7 @@ u8_t q_rnd_table[256] = {
 
 LUNOMATH_API
 u8_t q_rand(int *seed) {
-  q_rnd_idx = (q_rnd_idx >= 256) ? 0 : q_rnd_idx;
-  q_rnd_idx = (++q_rnd_idx) + (int)&seed;
-  return q_rnd_table[q_rnd_idx];
+  q_rnd_idx = (q_rnd_idx >= 255) ? 0 : q_rnd_idx;
+  q_rnd_idx = (++q_rnd_idx);
+  return (u8_t)q_rnd_table[q_rnd_idx] + (int)&seed;
 }
