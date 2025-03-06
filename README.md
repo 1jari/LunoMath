@@ -1,5 +1,7 @@
-LunoMath
-========
+<div allign="center">
+<img src="./assets/img/logo.png"/>
+</div>
+
 **LunoMath** is a simulation software for real-time [Mathematical model](https://en.wikipedia.org/wiki/Mathematical_model) planning and proofing.
 
 Based on a small [**Virtual Machine**](https://en.wikipedia.org/wiki/Virtual_machine), it is designed to run in real-time on embedded devices alongside a GUI client.
