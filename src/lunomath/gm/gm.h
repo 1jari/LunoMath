@@ -3,6 +3,7 @@
 
 #include "./trf/trf.h"
 #include "./vec/vec.h"
+#include "./line/line.h"
 #include "./axis/axis.h"
 #include "./angle/angle.h"
 #include "./tables/tables.h"

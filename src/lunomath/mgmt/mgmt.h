@@ -5,4 +5,4 @@
 #include "./fixed/fixed.h"
 #include "./stdint.h"
 
-#endif //__MGMT_H__
+#endif // __MGMT_H__

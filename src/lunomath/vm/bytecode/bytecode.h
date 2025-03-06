@@ -14,17 +14,17 @@ typedef enum {
 } mod_e;
 
 typedef enum {
-  OP_SPAWN      = 0b0000,
-  OP_LINK       = 0b0001,
-  OP_ATTACH     = 0b0010,
-  OP_NOP        = 0b1111
+  OP_SPAWN,     // create an instance for an parent object
+  OP_LINK,      // link a value to another object(s)
+  OP_ATTACH,    // link an object to another object(s)
+  OP_NOP
 } opcode_e;
 
 /*
   +------+                      +----------------------+
   |       /=====> opcode        | SPAWN                |
   + 3====|                      +----------------------+
-  |       \=====> type          | OPMOD_ANGLE          |
+  |       \=====> op modifier   | OPMOD_ANGLE          |
   +------+                      +----------------------+
   | 5     ===|                  |                      |
   +------+   |=> x              | from-deg(211.2 deg)  |
@@ -35,13 +35,5 @@ typedef enum {
   | 0     ===|                  |                      |
   +------+                      +----------------------+
 */
-
-// Instruction structure
-typedef struct {
-  opcode_e  op;  // The opcode
-  mod_e     t;   // The modifier type
-  u32_t     x;   // Operand or register x
-  u16_t     y;   // Operand or register y
-} opcode_t;
 
 #endif //__BYTECODE_H__

@@ -9,17 +9,37 @@
 #include "../bytecode/bytecode.h"
 
 typedef struct {
+  
+  struct {
+    u8_t   *prog;
+    u8_t   *c_op;
+    u16_t   p_sz;
+    u16_t   pos;
+  };
+
   q_stack_t st;         // main stack
   u8_t      id;         // machine id
   value_t   r[N_REGS];  // register
-  opcode_t  c_op;       // current op
 } mach_t;
 
 LUNOMATH_API static
-mach_t  create_mach() {
+mach_t  create_mach(u8_t *prog, u16_t size) {
+
+  if((!prog) || (size == 0)) {
+    printf("Fatal error! program is null!\n");
+    exit(0);
+  }
+  
   mach_t machine;
   machine.id  = q_rand_u8((int*)2112);
   machine.st  = create_q_stack();
+
+  machine.p_sz  = size;
+  machine.prog  = (u8_t*)malloc(machine.p_sz * sizeof(u8_t));
+  machine.c_op  = &machine.prog[0];
+  machine.pos   = 0;
+
+
   printf("+---------------------+\n");
   printf("| created machine %x! |\n", machine.id);
   printf("+---------------------+\n");
