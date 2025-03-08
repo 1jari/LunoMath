@@ -8,31 +8,34 @@
 
 // Operation Modifiers
 typedef enum {
-  OPMOD_ANGLE,
-  OPMOD_VEC2F,
-  OPMOD_AXIS,
+  OPMOD_ANGLE,    // 16-bits
+  OPMOD_CALL_ID,  // 16-bits
+  OPMOD_VEC2F,    // 64-bits
+  OPMOD_AXIS,     // 
+  OPMOD_ID,       // 16 bits
 } mod_e;
 
 typedef enum {
-  OP_SPAWN,     // create an instance for an parent object
-  OP_LINK,      // link a value to another object(s)
-  OP_ATTACH,    // link an object to another object(s)
-  OP_NOP
+  OP_NOP      = 0b0000,
+  OP_SPAWN    = 0b0001,  // create an instance for an parent object
+  OP_LINK     = 0b0010,  // link a value to another object(s)
+  OP_ATTACH   = 0b0011,  // link an object to another object(s)
+  OP_CALL_ID  = 0b0100,  // Set the current object
+  OP_BREAK    = 0b1111,
 } opcode_e;
 
 /*
+  example:
   +------+                      +----------------------+
-  |       /=====> opcode        | SPAWN                |
-  + 3====|                      +----------------------+
-  |       \=====> op modifier   | OPMOD_ANGLE          |
+  |      |  /=====> opcode      | SPAWN                |
+  + 3======|                    +----------------------+
+  |      |  \=====> op modifier | OPMOD_ANGLE          |
   +------+                      +----------------------+
-  | 5     ===|                  |                      |
-  +------+   |=> x              | from-deg(211.2 deg)  |
-  | 4     ===|                  |                      |
+  | 2    |===\                  |                      |
+  +------+   |====> value       | from-deg(211.2 deg)  |
+  | 1    |===/                  |                      |
   +------+                      +----------------------+
-  | 1     ===|                  |                      |
-  +------+   |======> Target    | 0x0000 (global)      |
-  | 0     ===|                  |                      |
+  | 0    |========> Target obj  | 2112                 |
   +------+                      +----------------------+
 */
 

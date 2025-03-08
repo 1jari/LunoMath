@@ -12,9 +12,8 @@ typedef struct {
   
   struct {
     u8_t   *prog;
-    u8_t   *c_op;
     u16_t   p_sz;
-    u16_t   pos;
+    //u16_t   pos;
   };
 
   q_stack_t st;         // main stack
@@ -36,15 +35,20 @@ mach_t  create_mach(u8_t *prog, u16_t size) {
 
   machine.p_sz  = size;
   machine.prog  = (u8_t*)malloc(machine.p_sz * sizeof(u8_t));
-  machine.c_op  = &machine.prog[0];
-  machine.pos   = 0;
+  //machine.pos   = 0;
 
+  for(int i = 0; i < N_REGS; i++) {
+    machine.r[i] = 0;
+  }
 
   printf("+---------------------+\n");
   printf("| created machine %x! |\n", machine.id);
   printf("+---------------------+\n");
   return machine;
 }
+
+LUNOMATH_API
+void exec_mach(mach_t *mach);
 
 LUNOMATH_API static
 void shutdown_mach(mach_t *machine) {

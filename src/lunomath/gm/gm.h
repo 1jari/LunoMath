@@ -7,5 +7,6 @@
 #include "./axis/axis.h"
 #include "./angle/angle.h"
 #include "./tables/tables.h"
+#include "./vertex/vertex.h"
 
 #endif //__MGMT_H__
