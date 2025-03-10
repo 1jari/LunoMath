@@ -41,9 +41,9 @@ mach_t  create_mach(u8_t *prog, u16_t size) {
     machine.r[i] = 0;
   }
 
-  printf("+---------------------+\n");
-  printf("| created machine %x! |\n", machine.id);
-  printf("+---------------------+\n");
+  throw_error("+-----------------+", 0);
+  throw_error("| created machine |", 0);
+  throw_error("+-----------------+", 0);
   return machine;
 }
 
