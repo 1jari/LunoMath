@@ -25,8 +25,7 @@ typedef struct {
 
 LUNOMATH_API static
 body_t create_body( axis_t c_axis,
-                    vec2f_t  sz,
-                    vec2f_t  pos) {
+                    vec2f_t  sz) {
   body_t body;
   body.c_axis = c_axis;
   body.sz     = sz;

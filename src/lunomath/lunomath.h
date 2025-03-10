@@ -8,7 +8,8 @@ extern "C" {
 #include "./gm/gm.h"
 #include "./vm/vm.h"
 #include "./common.h"
-#include "./mgmt/fixed/fixed.h"
+#include "./mov/mov.h"
+#include "./mgmt/mgmt.h"
 
 #ifdef __cplusplus
 }
