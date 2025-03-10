@@ -39,4 +39,11 @@ typedef enum {
   +------+                      +----------------------+
 */
 
+typedef struct {
+  opcode_e  op;
+  mod_e     mod;
+  u16_t     value;
+  u8_t      target;
+} opcode_t;
+
 #endif //__BYTECODE_H__

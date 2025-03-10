@@ -1,3 +1,5 @@
+#include <string>
+#include <iostream>
 #include <lunomath/lunomath.h>
 #include "./Runtime/App/App.hpp"
 
@@ -6,6 +8,8 @@ q_stack_t stack;
 using namespace Runtime;
 
 class Simulator : public App {
+private: 
+  mach_t machine;
 public:
   Simulator() : App() {
     stack = create_q_stack();
@@ -30,7 +34,12 @@ public:
     printf("y: %f\n", FX_TO_F(vec2f_get_y(nv)));
   }
 
-  void step() override {}
+  void step() override {
+    char* output = catch_mach_err(&machine);
+    if(output != NULL) {
+      std::cout << output << std::endl;
+    }
+  }
 
   void draw() override {}
 
@@ -38,8 +47,6 @@ public:
     clean_q_stack(&stack);
     shutdown_mach(&machine);
   }
-  private: 
-    mach_t machine;
 };
 
 int SDL_main(int argc, char* argv[]) {

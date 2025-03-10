@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #ifndef LUNOMATH_SHARED
 #define LUNOMATH_API
