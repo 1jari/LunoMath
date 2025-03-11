@@ -8,11 +8,10 @@
 
 // Operation Modifiers
 typedef enum {
-  OPMOD_ANGLE,    // 16-bits
-  OPMOD_CALL_ID,  // 16-bits
-  OPMOD_VEC2F,    // 64-bits
-  OPMOD_AXIS,     // 
-  OPMOD_ID,       // 16 bits
+  OPMOD_ANGLE   = 0b0000,   // 16-bits
+  OPMOD_VEC2F   = 0b0001,   // 64-bits
+  OPMOD_AXIS    = 0b0010,   // 64+16 bits
+  OPMOD_ID      = 0b0011,   // 16-bits
 } mod_e;
 
 typedef enum {
@@ -24,26 +23,20 @@ typedef enum {
   OP_BREAK    = 0b1111,
 } opcode_e;
 
-/*
-  example:
-  +------+                      +----------------------+
-  |      |  /=====> opcode      | SPAWN                |
-  + 3======|                    +----------------------+
-  |      |  \=====> op modifier | OPMOD_ANGLE          |
-  +------+                      +----------------------+
-  | 2    |===\                  |                      |
-  +------+   |====> value       | from-deg(211.2 deg)  |
-  | 1    |===/                  |                      |
-  +------+                      +----------------------+
-  | 0    |========> Target obj  | 2112                 |
-  +------+                      +----------------------+
-*/
-
 typedef struct {
   opcode_e  op;
   mod_e     mod;
   u16_t     value;
   u8_t      target;
 } opcode_t;
+
+// example: SPAWN OPMOD_ANGLE 4000 2112
+
+LUNOMATH_API static
+u8_t opcode_prefix(opcode_e op, mod_e mod) {
+  u8_t prefix =
+    ((u8_t)op << 4) | (((u8_t)mod) & 0xF);
+  return prefix;
+}
 
 #endif //__BYTECODE_H__

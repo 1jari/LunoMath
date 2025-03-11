@@ -15,17 +15,17 @@ typedef struct {
     u16_t     p_sz;
     opcode_t  c_op;     // current op
   };
-  error_t   c_err;      // current error
-  q_stack_t st;         // main stack
-  u8_t      id;         // mach id
-  value_t   r[N_REGS];  // register
+  error_t     c_err;      // current error
+  q_stack_t   st;         // main stack
+  u8_t        id;         // mach id
+  value_t     r[N_REGS];  // register
 } mach_t;
 
 LUNOMATH_API static
 mach_t  create_mach(u8_t *prog, u16_t size) {
 
   mach_t mach;
-  if((!prog) || (size == 0)) {
+  if((!prog) || (size == 0 || NULL)) {
     mach.c_err = ERROR_FATAL("Fatal error! program is null!");
   }
   
