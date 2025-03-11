@@ -29,12 +29,12 @@ fixed_t vertex_get_d(vertex_t v) {
 }
 
 LUNOMATH_API static inline
-angle_t vertex_get_a(vec2f_t v) {
+angle_t vertex_get_a(vertex_t v) {
   return (angle_t)((v >> VERTEX_ANG_POS) & 0xFFFF);
 }
 
 LUNOMATH_API static inline
-u8_t    vertex_get_h(vec2f_t v) {
+u8_t    vertex_get_h(vertex_t v) {
   return (u8_t)((v >> VERTEX_H_POS) & 0xFF);
 }
 

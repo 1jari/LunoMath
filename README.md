@@ -9,7 +9,7 @@
 > DISCLAIMER: Currently in development.
 
 ### Design and Philosophy
-This project aims to run on embedded devices, specifically ARM5-based microprocessors. 
+This project aims to run on embedded devices, specifically ARM9-based microprocessors. 
 These devices are typically limited, often lacking useful features such as [Floating-Point Units](https://www.youtube.com/watch?v=ssDBqQ5f5_0), leading to slower and inefficient programmes.
 
 However, it is possible to surpass these limitations by doing an "low-level hacking", paying attention to every single line of code and its performance.
