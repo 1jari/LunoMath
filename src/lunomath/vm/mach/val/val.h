@@ -9,9 +9,9 @@
  * * * * * * * * * *     |   Positions   |    * * * * * * * * * * 
  * * * * * * * * * *     +---------------+    * * * * * * * * * */
 
-#define VAL_POS_PREFIX  0
-#define VAL_POS_CONV    2
-#define VAL_POS_DATA    4
+#define VAL_POS_PREFIX  30
+#define VAL_POS_CONV    28
+#define VAL_POS_DATA    0
 
 /* * * * * * * * * *     +---------------+    * * * * * * * * * * 
  * * * * * * * * * *     |   Prefixes    |    * * * * * * * * * * 
@@ -45,9 +45,9 @@ LUNOMATH_API static
 vm_val_t  create_val(         u8_t    prefix,
                               u8_t    conv,
                               u32_t   data) {
-  return  (((vm_val_t)prefix & 0b11)    << VAL_POS_PREFIX)      // 2 bits for prefix
-    |     (((vm_val_t)conv & 0b10)      << VAL_POS_CONV)          // 2 bits for conv
-    |     (((vm_val_t)data & 0xFFFFFFFF) << VAL_POS_DATA);   // 28 bits for data
+  return  (((vm_val_t)prefix & 0b11)      << VAL_POS_PREFIX)    // 2 bits for prefix
+    |     (((vm_val_t)conv & 0b10)        << VAL_POS_CONV)      // 2 bits for conv
+    |     (((vm_val_t)data & 0xFFFFFFFF)  << VAL_POS_DATA);     // 28 bits for data
 }
 
 LUNOMATH_API
