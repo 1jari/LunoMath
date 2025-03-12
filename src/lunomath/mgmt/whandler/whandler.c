@@ -11,7 +11,7 @@ void little_endian_encode(u32_t   value,
 }
 
 LUNOMATH_API
-u32_t decode_u8_to_u32_little_endian(const u8_t *input) {
+u32_t little_endian_decode( const u8_t *input) {
     u32_t value = 0;
     
     // Combine the bytes from the little-endian array

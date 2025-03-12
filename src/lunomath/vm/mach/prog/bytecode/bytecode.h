@@ -1,8 +1,8 @@
 #ifndef __BYTECODE_H__
 #define __BYTECODE_H__
 
-#include "../../mgmt/mgmt.h"
-#include "../../common.h"
+#include "../../../../mgmt/mgmt.h"
+#include "../../../../common.h"
 
 #define GLOBAL_FIELD 0
 

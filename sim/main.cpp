@@ -3,8 +3,6 @@
 #include <lunomath/lunomath.h>
 #include "./Runtime/App/App.hpp"
 
-q_stack_t stack;
-
 using namespace Runtime;
 
 class Simulator : public App {
@@ -12,11 +10,13 @@ private:
   mach_t machine;
 public:
   Simulator() : App() {
-    stack = create_q_stack();
     
     u8_t prog[32];
 
     machine = create_mach(prog, 32);
+    int r = q_rand((int*)2112);
+    printf("%08X %08X\n", angle_from_deg(F_TO_FX(211.2f)),
+                          convert_angle_val(angle_from_deg(F_TO_FX(211.2f))));
   }
 
   void step() override {
@@ -29,7 +29,6 @@ public:
   void draw() override {}
 
   ~Simulator() {
-    clean_q_stack(&stack);
     shutdown_mach(&machine);
   }
 };

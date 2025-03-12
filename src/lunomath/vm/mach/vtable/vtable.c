@@ -1,13 +1,11 @@
-#include "./stack.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "./vtable.h"
 
 LUNOMATH_API
-q_stack_t create_q_stack() {
-  q_stack_t stack;
+vtable_t create_vtable() {
+  vtable_t stack;
 
   // Allocate some memory
-  stack.data = (value_t*)malloc(sizeof(value_t));
+  stack.data = (vm_val_t*)malloc(sizeof(vm_val_t));
 
   stack.size = 0;
 
@@ -15,37 +13,37 @@ q_stack_t create_q_stack() {
 }
 
 LUNOMATH_API
-value_t q_stack_pop(q_stack_t *s) {
+vm_val_t vtable_pop(vtable_t *s) {
   if (s->size == 0) {
     // Handle stack underflow
     printf("Error: Stack underflow\n");
     return 0;  // Or handle an error as appropriate
   }
 
-  value_t top_value = s->data[s->size - 1];  // Get the top value
+  vm_val_t top_value = s->data[s->size - 1];  // Get the top value
   s->size--;  // Decrease size
   
   // Optional: Reallocate memory to shrink stack size
-  s->data = (value_t*)realloc(s->data, s->size * sizeof(value_t));
+  s->data = (vm_val_t*)realloc(s->data, s->size * sizeof(vm_val_t));
 
   return top_value;
 }
 
 LUNOMATH_API
-u16_t q_stack_push(value_t x, q_stack_t *s) {
+u16_t vtable_push(vm_val_t x, vtable_t *s) {
   // Reallocate memory for the stack, increase the size
-  s->data = (value_t*)realloc(s->data, (s->size + 1) * sizeof(value_t));
+  s->data = (vm_val_t*)realloc(s->data, (s->size + 1) * sizeof(vm_val_t));
 
   s->data[s->size] = x;  // Push the new value
   s->size++;  // Increase the size
 
-  printf("Pushed %d\n", q_stack_top(s));
+  printf("Pushed %d\n", vtable_top(s));
 
   return s->size;
 }
 
 LUNOMATH_API
-value_t q_stack_base(q_stack_t *s) {
+vm_val_t vtable_base(vtable_t *s) {
   if (s->size == 0) {
     printf("Error: Stack is empty\n");
     return 0;  // Or handle an error as appropriate
@@ -55,7 +53,7 @@ value_t q_stack_base(q_stack_t *s) {
 }
 
 LUNOMATH_API
-value_t q_stack_top(q_stack_t *s) {
+vm_val_t vtable_top(vtable_t *s) {
   if (s->size == 0) {
     printf("Error: Stack is empty\n");
     return 0;  // Or handle an error as appropriate
@@ -65,7 +63,7 @@ value_t q_stack_top(q_stack_t *s) {
 }
 
 LUNOMATH_API
-void clean_q_stack(q_stack_t *s) {
+void clean_vtable(vtable_t *s) {
   if (s->data) {
     free(s->data);  // Free allocated memory
     s->data = NULL; // Prevent dangling pointer

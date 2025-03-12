@@ -3,44 +3,52 @@
 
 #define N_REGS 3
 
+#include "./obj/obj.h"
+#include "./prog/prog.h"
 #include "../../common.h"
-#include "../stack/stack.h"
 #include "../../mgmt/mgmt.h"
-#include "../bytecode/bytecode.h"
+#include "./vtable/vtable.h"
 
 typedef struct {
-  
+
   struct {
-    u8_t     *prog;
-    u16_t     p_sz;
-    opcode_t  c_op;     // current op
+                        /////////////////////
+                        ///               ///
+                        /// OBJECT TABLE  ///
+                        ///               ///
+                        /////////////////////
+    obj_t  *tab;        //  Table data
+    u16_t   t_sz;       //  Table size
   };
-  error_t     c_err;      // current error
-  q_stack_t   st;         // main stack
-  u8_t        id;         // mach id
-  value_t     r[N_REGS];  // register
+
+  vm_prog_t prog;
+
+  error_t   c_err;      // current error/msg
+  vtable_t  st;         // main stack
+  u8_t      id;         // mach id
+  vm_val_t  r[N_REGS];  // register
 } mach_t;
 
 LUNOMATH_API static
 mach_t  create_mach(u8_t *prog, u16_t size) {
 
   mach_t mach;
+
+  // Checking the input is valid
   if((!prog) || (size == 0 || NULL)) {
     mach.c_err = ERROR_FATAL("Fatal error! program is null!");
   }
   
-  mach.id  = q_rand_u8((int*)2112);
-  mach.st  = create_q_stack();
+  // Basic machine setup
+  mach.id  = q_rand_u8((int*)2112); // Setting up machine id in a random ID
+  mach.st  = create_vtable();     
 
-  mach.p_sz  = size;
-  mach.prog  = (u8_t*)malloc(mach.p_sz * sizeof(u8_t));
-  //mach.pos   = 0;
+  // Program input
+  mach.prog = init_vm_prog(size);
 
-  for(int i = 0; i < N_REGS; i++) {
-    mach.r[i] = 0;
-  }
-
+  // Output that the procedure was successful
   mach.c_err = ERROR_OK("| created mach |");
+
   return mach;
 }
 
@@ -52,7 +60,11 @@ char* catch_mach_err(mach_t *mach);
 
 LUNOMATH_API static
 void shutdown_mach(mach_t *mach) {
-  clean_q_stack(&mach->st);
+  if(mach->tab) {
+    free(mach->tab);
+  }
+  clean_vtable(&mach->st);
+  clean_vm_prog(&mach->prog);
 }
 
 #endif //__MACH_H__
