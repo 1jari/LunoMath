@@ -1,15 +1,15 @@
 #include <string>
 #include <iostream>
 #include <lunomath/lunomath.h>
-#include "./Runtime/App/App.hpp"
+#include "./Versis/Engine/Engine.hpp"
 
-using namespace Runtime;
+using namespace Versis::Engine::Runtime;
 
 class Simulator : public App {
 private: 
   mach_t machine;
 public:
-  Simulator() : App() {
+  Simulator() : App("Lunomath GUI", 1280, 720, false) {
     
     u8_t prog[32];
 
@@ -19,40 +19,34 @@ public:
                           convert_angle_val(angle_from_deg(F_TO_FX(211.2f))));
   }
 
-  void step() override {
+  void Step() override {
     char* output = catch_mach_err(&machine);
     if(output != NULL) {
       std::cout << output << std::endl;
     }
   }
 
-  void draw() override {}
-
-  ~Simulator() {
-    shutdown_mach(&machine);
-  }
 };
 
-int SDL_main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
   // Create a new instance of Simulator
   Simulator* app = new Simulator();
   
   // Initialize the app with a window title and size
-  app->init("Lunomath Simulator", 1280, 720, false);
+  app->Start();
+
+  //Versis::Engine::UI ui(app);
 
   // Main loop: keep handling events while the app state is true
-  while (app->getState()) {
-    app->handle();
+  while (app->GetState()) {
+    app->Handle();
 
-    app->beginRender();
+    app->GetRenderer()->BeginRender();
 
-    app->step();
-    
-    app->endRender();
+    app->Step();
+
+    app->GetRenderer()->Update();
   }
-
-  // Clean up resources when the loop ends
-  app->clean();
   
   // Delete the app object
   delete app;

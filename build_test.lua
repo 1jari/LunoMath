@@ -8,8 +8,17 @@ project "versis_gui"
    targetdir "bin/%{cfg.buildcfg}"
    includedirs { "./dep/include/", "./src/" }
    libdirs { "./dep/lib/", "./bin/Debug/" }
-   links { "SDL2main", "SDL2", "lunomath" }
-   files { "./sim/**.h", "./sim/**.hpp", "./sim/**.cpp" }
+   links {     "Opengl32",
+               "SDL2main",
+               "SDL2", 
+               "glew32",
+               "glew32s",
+               "SDL2_ttf",
+               "lunomath" }
+
+   files {     "./sim/**.h", 
+               "./sim/**.hpp",
+               "./sim/**.cpp" }
 
    filter "configurations:Debug"
       defines { "DEBUG" }

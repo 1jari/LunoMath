@@ -23,8 +23,10 @@ Our goal is to provide a tool that can be used not only as a prototyping tool bu
 ### Requirements
 This project uses the following tools:
 
-- [Premake5](https://premake.github.io/) Building System
-- [Simple Directmedia Layer 2 (SDL2)](https://www.libsdl.org/) for the GUI client
+- [Premake5](https://premake.github.io/) Building System.
+- [Simple Directmedia Layer 2 (SDL2)](https://www.libsdl.org/) for the GUI client.
+- [SDL2_ttf](https://www.libsdl.org/) for text rendering.
+- [Dear ImGUI](https://github.com/ocornut/imgui/) for UI/UX stuff.
 
 ### Steps to Compile:
 ```sh
