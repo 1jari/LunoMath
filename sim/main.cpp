@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     app->Step();
 
-    app->GetRenderer()->Update();
+    app->GetRenderer()->EndRender();
   }
   
   // Delete the app object

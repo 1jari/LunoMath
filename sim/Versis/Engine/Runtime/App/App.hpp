@@ -5,6 +5,7 @@
 #include "../Window/Window.hpp"
 #include "../Module/Module.hpp"
 #include "../Renderer/Renderer.hpp"
+#include "../VideoComponent/VideoComponent.hpp"
 
 #define SDL_MAIN_HANDLED
 #undef main
@@ -12,7 +13,7 @@
 namespace Versis {
   namespace Engine {
     namespace Runtime {
-    class App : public Module {
+    class App : public Module, public VideoComponent {
       public:
         App::App( const char *title,
                   int         width,
@@ -33,8 +34,9 @@ namespace Versis {
         // To override...
         virtual void Step() {};
 
-        void BeginRender();
-        void EndRender();
+        // Rendering functions
+        void  BeginRender() override;
+        void  EndRender()   override;
 
         bool GetState() const;
         Renderer *GetRenderer() const;
@@ -43,10 +45,10 @@ namespace Versis {
         ~App();
       private:
         struct {
-          bool       State;
-          SDL_Event  Event;
-          Window    *WindowDriver;
-          Renderer  *RenderDriver;
+          bool          State;
+          SDL_Event     Event;
+          Window       *WindowDriver;
+          Renderer     *RenderDriver;
         };
 
         struct {  

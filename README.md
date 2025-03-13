@@ -26,7 +26,7 @@ This project uses the following tools:
 - [Premake5](https://premake.github.io/) Building System.
 - [Simple Directmedia Layer 2 (SDL2)](https://www.libsdl.org/) for the GUI client.
 - [SDL2_ttf](https://www.libsdl.org/) for text rendering.
-- [Dear ImGUI](https://github.com/ocornut/imgui/) for UI/UX stuff.
+- [GLAD](https://glad.dav1d.de/) for OpenGL rendering.
 
 ### Steps to Compile:
 ```sh

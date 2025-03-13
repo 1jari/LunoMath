@@ -38,6 +38,13 @@ namespace Versis {
         }
       }
 
+      void App::BeginRender() {
+        RenderDriver->BeginRender();
+      }
+      void App::EndRender() {
+        RenderDriver->EndRender();
+      }
+
       Renderer *App::GetRenderer() const {
         return RenderDriver;
       }
@@ -50,8 +57,8 @@ namespace Versis {
       }
       
       App::~App() {
-        //SDL_DestroyWindow(window);
-        //SDL_DestroyRenderer(renderer);
+        delete  RenderDriver;
+        delete  WindowDriver;
         printf("Done!\n");
       }
     };

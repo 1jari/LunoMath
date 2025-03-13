@@ -1,10 +1,9 @@
 #include "./Renderer.hpp"
-#include <iostream>
 
 namespace Versis {
   namespace Engine {
     namespace Runtime {
-      // Start the renderer by setting up OpenGL context, GLEW, and V-Sync if necessary
+      // Start the renderer by setting up OpenGL context, GLAD, and V-Sync if necessary
       bool Renderer::Start() {
         // Set OpenGL attributes
         if (!SetupOpenGLAttributes()) {
@@ -18,11 +17,9 @@ namespace Versis {
           return false;
         }
 
-        // Initialize GLEW
-        glewExperimental = GL_TRUE;
-        GLenum glewInitResult = glewInit();
-        if (glewInitResult != GLEW_OK) {
-          std::cerr << "Failed to initialize GLEW! Error: " << glewGetErrorString(glewInitResult) << std::endl;
+        // Initialize GLAD (load OpenGL function pointers)
+        if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(SDL_GL_GetProcAddress))) {
+          std::cerr << "Failed to initialize GLAD! Error: " << std::endl;
           return false;
         }
 
@@ -82,7 +79,7 @@ namespace Versis {
       }
 
       // Swap buffers to update the window with the rendered content
-      void Renderer::Update() {
+      void Renderer::EndRender() {
         SDL_GL_SwapWindow(window->GetHandle());
       }
 
