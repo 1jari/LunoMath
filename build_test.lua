@@ -21,7 +21,6 @@ project "versis_gui"
                "./sim/**.cpp",
                "./dep/include/GL/glad.c"}
 
-   defines { "IMGUI_IMPL_OPENGL_LOADER_GLEW" }
    filter "configurations:Debug"
       defines { "DEBUG" }
       symbols "On"
