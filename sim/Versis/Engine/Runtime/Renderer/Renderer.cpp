@@ -1,11 +1,13 @@
 #include "./Renderer.hpp"
+#include <iostream>
 
 namespace Versis {
   namespace Engine {
     namespace Runtime {
-      // Start the renderer by setting up OpenGL context, GLAD, and V-Sync if necessary
+
+      // Renderer initialization, setting up OpenGL context, GLAD, and V-Sync if requested
       bool Renderer::Start() {
-        // Set OpenGL attributes
+        // Set OpenGL attributes (version and profile)
         if (!SetupOpenGLAttributes()) {
           return false;
         }
@@ -31,12 +33,12 @@ namespace Versis {
           }
         }
 
-        // Set default OpenGL states
+        // Set default OpenGL settings
         InitializeOpenGLDefaults();
 
         return true;
       }
-      
+
       SDL_GLContext Renderer::GetContext() const {
         return OpenGL;
       }
@@ -48,7 +50,7 @@ namespace Versis {
         }
       }
 
-      // Setup OpenGL attributes (version and profile)
+      // Setup OpenGL attributes for the desired version and profile
       bool Renderer::SetupOpenGLAttributes() {
         // Request OpenGL 3.3 core profile
         if (SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3) != 0 ||
@@ -60,27 +62,27 @@ namespace Versis {
         return true;
       }
 
-      // Set default OpenGL settings
+      // Set up default OpenGL settings like viewport and clear color
       void Renderer::InitializeOpenGLDefaults() {
-        // Set up the viewport
+        // Set up the viewport to match the window size
         glViewport(0, 0, window->GetWidth(), window->GetHeight());
 
-        // Set clear color (RGBA)
+        // Set a default clear color (RGBA)
         glClearColor(0.1f, 0.45f, 0.5f, 1.0f);
 
-        // Enable depth testing
+        // Enable depth testing to ensure proper 3D rendering
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
       }
 
-      // Begin rendering by clearing the screen
+      // Begin rendering process: clear screen and depth buffer
       void Renderer::BeginRender() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the screen (color + depth buffer)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear both color and depth buffers
       }
 
-      // Swap buffers to update the window with the rendered content
+      // End rendering process: swap buffers to display the result
       void Renderer::EndRender() {
-        SDL_GL_SwapWindow(window->GetHandle());
+        SDL_GL_SwapWindow(window->GetHandle()); // Swap the window buffers
       }
 
     } // namespace Runtime

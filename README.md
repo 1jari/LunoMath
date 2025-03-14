@@ -23,10 +23,11 @@ Our goal is to provide a tool that can be used not only as a prototyping tool bu
 ### Requirements
 This project uses the following tools:
 
-- [Premake5](https://premake.github.io/) Building System.
-- [Simple Directmedia Layer 2 (SDL2)](https://www.libsdl.org/) for the GUI client.
-- [SDL2_ttf](https://www.libsdl.org/) for text rendering.
-- [GLAD](https://glad.dav1d.de/) for OpenGL rendering.
+* [Premake5](https://premake.github.io/) Building System.
+* [Simple Directmedia Layer 2 (SDL2)](https://www.libsdl.org/) for the GUI client.
+* [SDL2_ttf](https://www.libsdl.org/) for text rendering.
+* [GLAD](https://glad.dav1d.de/) for OpenGL rendering.
+* [GLM](https://github.com/g-truc/glm).
 
 ### Steps to Compile:
 ```sh

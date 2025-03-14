@@ -7,7 +7,7 @@
 #include "../Window/Window.hpp"
 #include "../VideoComponent/VideoComponent.hpp"
 
-#define GLSL_VERSION "#version 130"
+#define GLSL_VERSION "#version 330"
 
 namespace Versis {
   namespace Engine {
@@ -25,11 +25,15 @@ namespace Versis {
         void  BeginRender() override;
         void  EndRender()   override;
 
+        void RenderPolygon( const 
+                            GLuint shaderProgram, 
+                            const 
+                            GLuint VAO);
       private:
         bool SetupOpenGLAttributes();
         void InitializeOpenGLDefaults();
         bool CreateContext();
-
+      
         SDL_GLContext OpenGL;  // OpenGL context
         bool    vsync;
         Window* window;   // Window handle
