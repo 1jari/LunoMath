@@ -6,7 +6,7 @@
 
 **LunoMath** is a simulation software for real-time [Mathematical model](https://en.wikipedia.org/wiki/Mathematical_model) planning and proofing.
 
-> DISCLAIMER: Currently in development.
+> DISCLAIMER: Currently Abandoned.
 
 ### Design and Philosophy
 This project aims to run on embedded devices, specifically ARM9-based microprocessors. 
